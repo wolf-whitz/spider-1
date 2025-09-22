@@ -5,10 +5,7 @@
         <!-- Link to the profile page -->
         <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
         
-        <!-- Thumbnail image from the search page (optional) -->
-        <ProfileImage selector="a.item-cover img" attribute="src" optional="true" />
-        
-        <!-- Follow this to get the real profile image -->
+        <!-- Use the actual profile page image as profileLink -->
         <ProfileTarget>
           <Url selector="a.item-cover, a.item-title" attribute="href" />
           <Image selector=".col-24.col-sm-8.col-md-6.attr-cover img" attribute="src" />
@@ -18,10 +15,6 @@
         <HighlightText selector=".highlight-text" optional="true" />
         <Genres selector=".item-genre span, .item-genre u, .item-genre b" multiple="true" />
         <LatestChapter selector=".item-volch a.visited" attribute="href" />
-        <UserLink selector=".item-volch a.me-2" attribute="href" optional="true" />
-        <UserAvatar selector=".item-volch a.me-2 img" attribute="src" optional="true" />
-        <Timestamp selector=".item-volch i" />
-        <CountryFlag selector="em.item-flag" attribute="data-lang" optional="true" />
       </Item>
     </Target>
     <Output type="json">
