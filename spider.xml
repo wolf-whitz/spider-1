@@ -4,6 +4,10 @@
       <Item selector=".col.item.line-b, .col.item.line-b.no-flag">
         <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
         <ProfileImage selector="a.item-cover img" attribute="src" />
+        <ProfileTarget>
+          <Url selector="a.item-cover, a.item-title" attribute="href" />
+          <Image selector=".col-24.col-sm-8.col-md-6.attr-cover img" attribute="src" />
+        </ProfileTarget>
         <Name selector=".item-title" />
         <HighlightText selector=".highlight-text" optional="true" />
         <Genres selector=".item-genre span, .item-genre u, .item-genre b" multiple="true" />
