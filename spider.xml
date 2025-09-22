@@ -1,7 +1,7 @@
 <Spiders>
   <Spider name="MTO_Search_Full" description="Scrapes search results with full metadata from mto.to">
     <Target url="https://mto.to/search?word=solo">
-      <Item selector=".col.item.line-b, .col.item.line-b.no-flag">
+      <Item selector="#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag">
         <!-- Link to the profile page -->
         <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
         
