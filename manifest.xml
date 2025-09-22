@@ -1,0 +1,19 @@
+<Spiders>
+  <Spider name="Meta_Spider_Registry" description="Registry of available spiders">
+    <Target url="">
+      <Item selector="">
+        <SpiderName selector="" value="MTO_Search_Full" />
+        <SpiderDescription selector="" value="Scrapes search results with full metadata from mto.to" />
+        <SpiderLink selector="" value="https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider.xml" />
+      </Item>
+    </Target>
+    <Output type="json">
+      <Filename pattern="spider_registry.json" />
+    </Output>
+    <Options>
+      <LazyLoad autoScroll="false" delay="0" />
+      <MaxRetries count="1" />
+      <ConcurrentRequests count="1" />
+    </Options>
+  </Spider>
+</Spiders>
