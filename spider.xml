@@ -1,5 +1,11 @@
 <Spiders>
   <Spider name="MTO_Search_Full" description="Scrapes search results with full metadata from mto.to">
+    <Types>
+      <Field name="manga_name" type="string" />
+      <Field name="manga_image" type="base64image" />
+      <Field name="manga_description" type="string" />
+      <Field name="genres" type="string[]" />
+    </Types>
     <Target url="https://mto.to/search?word={query}">
       <Item selector="#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag">
         <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
@@ -23,6 +29,10 @@
   </Spider>
 
   <Spider name="Comic_CBZ_Downloader" description="Scrapes images from #viewer and packages as CBZ">
+    <Types>
+      <Field name="image" type="url" />
+      <Field name="page_number" type="string" />
+    </Types>
     <Target selector="#viewer">
       <Item selector=".item.invisible">
         <Image selector="img" attribute="src" />
