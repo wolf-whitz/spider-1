@@ -2,12 +2,18 @@
   <Spider name="MTO_Search_Full" description="Scrapes search results with full metadata from mto.to">
     <Target url="https://mto.to/search?word=solo">
       <Item selector=".col.item.line-b, .col.item.line-b.no-flag">
+        <!-- Link to the profile page -->
         <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
-        <ProfileImage selector="a.item-cover img" attribute="src" />
+        
+        <!-- Thumbnail image from the search page (optional) -->
+        <ProfileImage selector="a.item-cover img" attribute="src" optional="true" />
+        
+        <!-- Follow this to get the real profile image -->
         <ProfileTarget>
           <Url selector="a.item-cover, a.item-title" attribute="href" />
           <Image selector=".col-24.col-sm-8.col-md-6.attr-cover img" attribute="src" />
         </ProfileTarget>
+
         <Name selector=".item-title" />
         <HighlightText selector=".highlight-text" optional="true" />
         <Genres selector=".item-genre span, .item-genre u, .item-genre b" multiple="true" />
