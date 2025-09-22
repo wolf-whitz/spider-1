@@ -1,0 +1,43 @@
+<Spiders>
+  <Spider name="MTO_Search_Full" description="Scrapes search results with full metadata from mto.to">
+    <Target url="https://mto.to/search?word=solo">
+      <Item selector=".col.item.line-b, .col.item.line-b.no-flag">
+        <ProfileLink selector="a.item-cover, a.item-title" attribute="href" />
+        <ProfileImage selector="a.item-cover img" attribute="src" />
+        <Name selector=".item-title" />
+        <HighlightText selector=".highlight-text" optional="true" />
+        <Genres selector=".item-genre span, .item-genre u, .item-genre b" multiple="true" />
+        <LatestChapter selector=".item-volch a.visited" attribute="href" />
+        <UserLink selector=".item-volch a.me-2" attribute="href" optional="true" />
+        <UserAvatar selector=".item-volch a.me-2 img" attribute="src" optional="true" />
+        <Timestamp selector=".item-volch i" />
+        <CountryFlag selector="em.item-flag" attribute="data-lang" optional="true" />
+      </Item>
+    </Target>
+    <Output type="json">
+      <Filename pattern="search_results_full.json" />
+    </Output>
+    <Options>
+      <LazyLoad autoScroll="true" delay="500" />
+      <MaxRetries count="3" />
+      <ConcurrentRequests count="5" />
+    </Options>
+  </Spider>
+
+  <Spider name="Comic_CBZ_Downloader" description="Scrapes images from #viewer and packages as CBZ">
+    <Target selector="#viewer">
+      <Item selector=".item.invisible">
+        <Image selector="img" attribute="src" />
+        <PageNumber selector=".page-num" format="{current}/{max}" />
+      </Item>
+    </Target>
+    <Output type="cbz">
+      <Filename pattern="page-{current}.jpg" />
+    </Output>
+    <Options>
+      <LazyLoad autoScroll="true" delay="500" />
+      <MaxRetries count="3" />
+      <ConcurrentRequests count="5" />
+    </Options>
+  </Spider>
+</Spiders>
