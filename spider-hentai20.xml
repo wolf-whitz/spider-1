@@ -7,15 +7,13 @@
   </Types>
   <Target url="https://hentai20.io/?s={query}">
     <Item selector="#content .wrapper .postbody .bixbox .listupd .bs">
-      <Name selector=".tt" />
       <ProfileLink selector="a" attribute="href" />
       <ProfileTarget>
         <Url selector="a" attribute="href" />
         <Image selector="img.ts-post-image" attribute="src" />
       </ProfileTarget>
-      <!-- Optional: if description is available inside div, otherwise can leave empty -->
+      <Name selector=".tt" />
       <HighlightText selector=".summary" optional="true" />
-      <!-- Optional: genres if present in span.type or similar -->
       <Genres selector=".type, .colored" multiple="true" optional="true" />
     </Item>
   </Target>
