@@ -21,18 +21,18 @@
     "ProfileTarget": {
       "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
       "Image": { "selector": "a.item-cover img", "attribute": "src" },
-      "Name": { "selector": ".item-title" },
+      "Name": { "selector": "a.item-title" },
       "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
       "Chapters": {
-        "selector": ".main .p-2.d-flex.flex-column.flex-md-row.item a.chapt",
+        "selector": ".item-volch a.visited",
         "attribute": "href",
         "text": true,
         "multiple": true,
-        "arranger": "chapterNumberAsc"
+        "arranger": "newestFirst"
       }
     },
-    "Name": { "selector": ".item-title" },
+    "Name": { "selector": "a.item-title" },
     "HighlightText": { "selector": ".highlight-text" },
     "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
     "profileById": {
@@ -40,14 +40,14 @@
       "ProfileTarget": {
         "Url": { "selector": "body", "attribute": "data-url" },
         "Image": { "selector": "a.item-cover img", "attribute": "src" },
-        "Name": { "selector": ".item-title" },
+        "Name": { "selector": "a.item-title" },
         "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
         "Chapters": {
-          "selector": ".main .p-2.d-flex.flex-column.flex-md-row.item a.chapt",
+          "selector": ".item-volch a.visited",
           "attribute": "href",
           "text": true,
           "multiple": true,
-          "arranger": "chapterNumberAsc"
+          "arranger": "newestFirst"
         }
       }
     }
