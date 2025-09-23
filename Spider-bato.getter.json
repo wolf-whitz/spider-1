@@ -1,0 +1,16 @@
+{
+  "name": "Bato_Chapter_Getter",
+  "description": "Fetches chapter pages (images) from mto.to",
+  "types": {
+    "fields": [
+      { "name": "page_num", "type": "number" },
+      { "name": "page_image", "type": "url" }
+    ]
+  },
+  "targetUrl": "https://mto.to/chapter/{id}",
+  "itemConfig": {
+    "selector": "#mainer #viewer .item.invisible",
+    "PageNum": { "selector": ".page-num", "text": true },
+    "PageImage": { "selector": "img.page-img", "attribute": "src" }
+  }
+}
