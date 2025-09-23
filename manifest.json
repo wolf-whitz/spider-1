@@ -15,7 +15,7 @@
     {
       "name": "Chapter_Getter",
       "description": "Fetches chapter list and details from a manga detail page",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-chapter-getter.json"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/Spider-bato.getter.json"
     }
   ]
 }
