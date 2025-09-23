@@ -11,6 +11,6 @@
   "itemConfig": {
     "selector": "#viewer div.item.invisible",
     "PageNum": { "selector": "span.page-num", "text": true },
-    "PageImage": { "selector": "img.page-img", "attribute": "src" }
+    "PageImage": { "selector": "img.page-img", "attribute": "src", "optional": true }
   }
 }
