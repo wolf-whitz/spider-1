@@ -28,7 +28,6 @@
         "text": true,
         "multiple": true,
         "dynamic": true,
-        "wait": 2000
       }
     },
     "Name": { "selector": ".item-title" },
