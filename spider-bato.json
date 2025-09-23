@@ -35,33 +35,6 @@
         "maxRetries": 3,
         "concurrentRequests": 5
       }
-    },
-    {
-      "name": "Comic_CBZ_Downloader",
-      "description": "Scrapes images from #viewer and packages as CBZ",
-      "types": {
-        "fields": [
-          { "name": "image", "type": "url" },
-          { "name": "page_number", "type": "string" }
-        ]
-      },
-      "targetUrl": "#viewer",
-      "itemConfig": {
-        "selector": ".item.invisible",
-        "ProfileTarget": {
-          "Image": { "selector": "img", "attribute": "src" }
-        },
-        "Name": { "selector": ".page-num" }
-      },
-      "output": {
-        "type": "cbz",
-        "filenamePattern": "page-{current}.jpg"
-      },
-      "options": {
-        "lazyLoad": { "autoScroll": true, "delay": 500 },
-        "maxRetries": 3,
-        "concurrentRequests": 5
-      }
     }
   ]
 }
