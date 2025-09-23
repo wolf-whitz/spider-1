@@ -25,7 +25,7 @@
       "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
       "Chapters": {
-        "selector": ".mt-4.episode-list .main .item a.visited.chapt",
+        "selector": ".item-volch a.visited",
         "attribute": "href",
         "text": true,
         "multiple": true,
@@ -40,7 +40,8 @@
       "ProfileTarget": {
         "Url": { "selector": "body", "attribute": "data-url" },
         "Image": { "selector": ".attr-cover img", "attribute": "src" },
-        "Name": { "selector": "a.item-title" },
+        "Name": { "selector": ".mt-4.d-flex.justify-content-between.title-set h3.item-title a" },
+        "Description": { "selector": ".row.detail-set .attr-main > div[style*='white-space']" },
         "Genres": {
           "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
           "multiple": true
@@ -51,8 +52,7 @@
           "text": true,
           "multiple": true,
           "arranger": "newestFirst"
-        },
-        "Description": { "selector": ".attr-main > div[style*='white-space']" }
+        }
       }
     }
   }
