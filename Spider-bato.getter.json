@@ -10,7 +10,6 @@
   "targetUrl": "https://mto.to/chapter/{id}",
   "itemConfig": {
     "selector": "#viewer div.item.invisible",
-    "styleMatch": "width: 800px; height: 889px; visibility: visible !important;",
     "PageImage": {
       "selector": "img.page-img",
       "attribute": "src",
