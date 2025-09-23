@@ -27,7 +27,6 @@
         "attribute": "href",
         "text": true,
         "multiple": true,
-        "dynamic": true,
       }
     },
     "Name": { "selector": ".item-title" },
