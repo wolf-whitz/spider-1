@@ -2,7 +2,7 @@
   <Spider name="MTO_Search_Full" description="Scrapes search results with full metadata from mto.to">
     <Types>
       <Field name="manga_name" type="string" />
-      <Field name="manga_image" type="base64image" />
+      <Field name="manga_image" type="url" />
       <Field name="manga_description" type="string" />
       <Field name="genres" type="string[]" />
     </Types>
