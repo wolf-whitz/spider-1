@@ -9,8 +9,8 @@
   },
   "targetUrl": "https://mto.to/chapter/{id}",
   "itemConfig": {
-    "selector": "#mainer #viewer .item.invisible",
-    "PageNum": { "selector": ".page-num", "text": true },
+    "selector": "#viewer div.item.invisible",
+    "PageNum": { "selector": "span.page-num", "text": true },
     "PageImage": { "selector": "img.page-img", "attribute": "src" }
   }
 }
