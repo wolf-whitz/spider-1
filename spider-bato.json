@@ -6,7 +6,8 @@
       { "name": "manga_name", "type": "string" },
       { "name": "manga_image", "type": "url" },
       { "name": "manga_description", "type": "string" },
-      { "name": "genres", "type": "string[]" }
+      { "name": "genres", "type": "string[]" },
+      { "name": "manga_chapters", "type": "object[]" }
     ]
   },
   "targetUrl": "https://mto.to/search?word={query}",
@@ -18,7 +19,15 @@
     },
     "ProfileTarget": {
       "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
-      "Image": { "selector": ".col-24.col-sm-8.col-md-6.attr-cover img", "attribute": "src" }
+      "Image": { "selector": "a.item-cover img", "attribute": "src" },
+      "Name": { "selector": ".item-title" },
+      "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
+      "Chapters": {
+        "selector": ".main .item a.chapt",
+        "attribute": "href",
+        "text": true,
+        "multiple": true
+      }
     },
     "Name": { "selector": ".item-title" },
     "HighlightText": { "selector": ".highlight-text" },
