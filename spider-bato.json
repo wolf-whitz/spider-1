@@ -39,16 +39,20 @@
       "urlPattern": "https://mto.to/series/{manga_id}/",
       "ProfileTarget": {
         "Url": { "selector": "body", "attribute": "data-url" },
-        "Image": { "selector": "a.item-cover img", "attribute": "src" },
+        "Image": { "selector": ".attr-cover img", "attribute": "src" },
         "Name": { "selector": "a.item-title" },
-        "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
+        "Genres": {
+          "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
+          "multiple": true
+        },
         "Chapters": {
           "selector": ".item-volch a.visited",
           "attribute": "href",
           "text": true,
           "multiple": true,
           "arranger": "newestFirst"
-        }
+        },
+        "Description": { "selector": ".attr-main > div[style*='white-space']" }
       }
     }
   }
