@@ -4,7 +4,12 @@
       <Item selector="">
         <SpiderName selector="" value="MTO_Search_Full" />
         <SpiderDescription selector="" value="Scrapes search results with full metadata from mto.to" />
-        <SpiderLink selector="" value="https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider.xml" />
+        <SpiderLink selector="" value="https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-bato.xml" />
+      </Item>
+      <Item selector="">
+        <SpiderName selector="" value="Hentai20_Search" />
+        <SpiderDescription selector="" value="Scrapes search results from hentai20.io" />
+        <SpiderLink selector="" value="https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.xml" />
       </Item>
     </Target>
     <Output type="json">
