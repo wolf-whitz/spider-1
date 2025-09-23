@@ -25,7 +25,7 @@
       "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
       "Chapters": {
-        "selector": ".item-volch a.visited",
+        "selector": ".mt-4.episode-list .main .item a.visited.chapt",
         "attribute": "href",
         "text": true,
         "multiple": true,
@@ -46,7 +46,7 @@
           "multiple": true
         },
         "Chapters": {
-          "selector": ".item-volch a.visited",
+          "selector": ".mt-4.episode-list .main .item a.visited.chapt",
           "attribute": "href",
           "text": true,
           "multiple": true,
