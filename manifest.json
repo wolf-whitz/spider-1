@@ -3,7 +3,7 @@
     {
       "name": "MTO_Search_Full",
       "description": "Scrapes search results with full metadata from mto.to",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-bato.json"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
     },
     {
       "name": "Hentai20_Search",
