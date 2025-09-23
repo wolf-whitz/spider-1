@@ -10,7 +10,16 @@
   "targetUrl": "https://mto.to/chapter/{id}",
   "itemConfig": {
     "selector": "#viewer div.item.invisible",
-    "PageNum": { "selector": "span.page-num", "text": true },
-    "PageImage": { "selector": "img.page-img", "attribute": "src", "optional": true }
+    "styleMatch": "width: 800px; height: 889px; visibility: visible !important;",
+    "PageNum": {
+      "selector": "span.page-num",
+      "text": true,
+      "transform": "parseInt(text.split('/')[0].trim())"
+    },
+    "PageImage": {
+      "selector": "img.page-img",
+      "attribute": "src",
+      "optional": true
+    }
   }
 }
