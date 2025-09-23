@@ -28,7 +28,8 @@
         "selector": ".main .p-2.d-flex.flex-column.flex-md-row.item a.chapt",
         "attribute": "href",
         "text": true,
-        "multiple": true
+        "multiple": true,
+        "arranger": "chapterNumberAsc"
       }
     },
     "Name": { "selector": ".item-title" },
