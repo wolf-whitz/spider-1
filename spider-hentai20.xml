@@ -1,0 +1,30 @@
+<Spider name="Hentai20_Search" description="Scrapes search results from hentai20.io">
+  <Types>
+    <Field name="manga_name" type="string" />
+    <Field name="manga_image" type="url" />
+    <Field name="manga_description" type="string" />
+    <Field name="genres" type="string[]" />
+  </Types>
+  <Target url="https://hentai20.io/?s={query}">
+    <Item selector="#content .wrapper .postbody .bixbox .listupd .bs">
+      <Name selector=".tt" />
+      <ProfileLink selector="a" attribute="href" />
+      <ProfileTarget>
+        <Url selector="a" attribute="href" />
+        <Image selector="img.ts-post-image" attribute="src" />
+      </ProfileTarget>
+      <!-- Optional: if description is available inside div, otherwise can leave empty -->
+      <HighlightText selector=".summary" optional="true" />
+      <!-- Optional: genres if present in span.type or similar -->
+      <Genres selector=".type, .colored" multiple="true" optional="true" />
+    </Item>
+  </Target>
+  <Output type="json">
+    <Filename pattern="search_results_hentai20.json" />
+  </Output>
+  <Options>
+    <LazyLoad autoScroll="true" delay="500" />
+    <MaxRetries count="3" />
+    <ConcurrentRequests count="5" />
+  </Options>
+</Spider>
