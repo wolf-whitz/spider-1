@@ -1,0 +1,67 @@
+{
+  "spiders": [
+    {
+      "name": "MTO_Search_Full",
+      "description": "Scrapes search results with full metadata from mto.to",
+      "types": {
+        "fields": [
+          { "name": "manga_name", "type": "string" },
+          { "name": "manga_image", "type": "url" },
+          { "name": "manga_description", "type": "string" },
+          { "name": "genres", "type": "string[]" }
+        ]
+      },
+      "targetUrl": "https://mto.to/search?word={query}",
+      "itemConfig": {
+        "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
+        "ProfileLink": {
+          "selector": "a.item-cover, a.item-title",
+          "attribute": "href"
+        },
+        "ProfileTarget": {
+          "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
+          "Image": { "selector": ".col-24.col-sm-8.col-md-6.attr-cover img", "attribute": "src" }
+        },
+        "Name": { "selector": ".item-title" },
+        "HighlightText": { "selector": ".highlight-text" },
+        "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true }
+      },
+      "output": {
+        "type": "json",
+        "filenamePattern": "search_results_full.json"
+      },
+      "options": {
+        "lazyLoad": { "autoScroll": true, "delay": 500 },
+        "maxRetries": 3,
+        "concurrentRequests": 5
+      }
+    },
+    {
+      "name": "Comic_CBZ_Downloader",
+      "description": "Scrapes images from #viewer and packages as CBZ",
+      "types": {
+        "fields": [
+          { "name": "image", "type": "url" },
+          { "name": "page_number", "type": "string" }
+        ]
+      },
+      "targetUrl": "#viewer",
+      "itemConfig": {
+        "selector": ".item.invisible",
+        "ProfileTarget": {
+          "Image": { "selector": "img", "attribute": "src" }
+        },
+        "Name": { "selector": ".page-num" }
+      },
+      "output": {
+        "type": "cbz",
+        "filenamePattern": "page-{current}.jpg"
+      },
+      "options": {
+        "lazyLoad": { "autoScroll": true, "delay": 500 },
+        "maxRetries": 3,
+        "concurrentRequests": 5
+      }
+    }
+  ]
+}
