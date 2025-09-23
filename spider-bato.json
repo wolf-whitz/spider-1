@@ -56,5 +56,5 @@
       }
     }
   },
-  "include": "Spider-bato.getter.json"
+"include": ["Spider-bato.getter.json"]
 }
