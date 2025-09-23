@@ -1,6 +1,6 @@
 {
   "name": "Bato_Chapter_Getter",
-  "description": "Fetches chapter pages (images) from mto.to",
+  "description": "Fetches chapter pages (images) from mto.to dynamically via JS",
   "types": {
     "fields": [
       { "name": "page_num", "type": "number" },
@@ -9,11 +9,13 @@
   },
   "targetUrl": "https://mto.to/chapter/{id}",
   "itemConfig": {
-    "selector": "#viewer > div.item.invisible",
+    "selector": null,
     "PageImage": {
-      "selector": "img.page-img",
-      "attribute": "src",
-      "optional": true
+      "js": "(() => { \
+        const imgVar = Object.keys(window).find(k => Array.isArray(window[k]) && window[k].every(u => typeof u === 'string' && u.startsWith('https://'))); \
+        if (!imgVar) return []; \
+        return window[imgVar].map((src, i) => ({ page_num: i + 1, page_image: src })); \
+      })()"
     }
   }
 }
