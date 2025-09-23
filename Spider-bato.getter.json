@@ -9,7 +9,7 @@
   },
   "targetUrl": "https://mto.to/chapter/{id}",
   "itemConfig": {
-    "selector": "#viewer div.item.invisible",
+    "selector": "#viewer > div.item.invisible",
     "PageImage": {
       "selector": "img.page-img",
       "attribute": "src",
