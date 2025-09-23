@@ -3,19 +3,22 @@
     {
       "name": "MTO_Search_Full",
       "description": "Scrapes search results with full metadata from mto.to",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json",
+      "link_name": "spider-bato.json"
     },
     {
       "name": "Hentai20_Search",
       "description": "Scrapes search results from hentai20.io",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json",
+      "link_name": "spider-hentai20.json"
     }
   ],
   "spider_getters": [
     {
       "name": "Chapter_Getter",
       "description": "Fetches chapter list and details from a manga detail page",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/Spider-bato.getter.json"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/Spider-bato.getter.json",
+      "link_name": "Spider-bato.getter.json"
     }
   ]
 }
