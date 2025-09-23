@@ -11,11 +11,6 @@
   "itemConfig": {
     "selector": "#viewer div.item.invisible",
     "styleMatch": "width: 800px; height: 889px; visibility: visible !important;",
-    "PageNum": {
-      "selector": "span.page-num",
-      "text": true,
-      "transform": "parseInt(text.split('/')[0].trim())"
-    },
     "PageImage": {
       "selector": "img.page-img",
       "attribute": "src",
