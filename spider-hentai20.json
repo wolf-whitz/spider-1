@@ -1,0 +1,40 @@
+{
+  "spiders": [
+    {
+      "name": "Hentai20_Search",
+      "description": "Scrapes search results from hentai20.io",
+      "types": {
+        "fields": [
+          { "name": "manga_name", "type": "string" },
+          { "name": "manga_image", "type": "url" },
+          { "name": "manga_description", "type": "string" },
+          { "name": "genres", "type": "string[]" }
+        ]
+      },
+      "targetUrl": "https://hentai20.io/?s={query}",
+      "itemConfig": {
+        "selector": "#content .wrapper .postbody .bixbox .listupd .bs",
+        "ProfileLink": {
+          "selector": "a",
+          "attribute": "href"
+        },
+        "ProfileTarget": {
+          "Url": { "selector": "a", "attribute": "href" },
+          "Image": { "selector": "img.ts-post-image", "attribute": "src" }
+        },
+        "Name": { "selector": ".tt" },
+        "HighlightText": { "selector": ".summary" },
+        "Genres": { "selector": ".type, .colored", "multiple": true }
+      },
+      "output": {
+        "type": "json",
+        "filenamePattern": "search_results_hentai20.json"
+      },
+      "options": {
+        "lazyLoad": { "autoScroll": true, "delay": 500 },
+        "maxRetries": 3,
+        "concurrentRequests": 5
+      }
+    }
+  ]
+}
