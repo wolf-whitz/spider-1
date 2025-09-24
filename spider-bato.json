@@ -1,58 +1,69 @@
 {
-  "id": "mto_search_full",
-  "name": "MTO Search Full",
-  "description": "Scrapes search results with full metadata from mto.to",
-  "types": {
-    "fields": [
-      { "name": "manga_id", "type": "string" },
-      { "name": "manga_name", "type": "string" },
-      { "name": "manga_image", "type": "url" },
-      { "name": "manga_description", "type": "string" },
-      { "name": "genres", "type": "string[]" },
-      { "name": "manga_chapters", "type": "object[]" }
-    ]
-  },
-  "targetUrl": "https://mto.to/search?word={query}",
-  "itemConfig": {
-    "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
-    "ProfileLink": {
-      "selector": "a.item-cover, a.item-title",
-      "attribute": "href"
+  "spider": {
+    "id": "mto_search_full",
+    "name": "MTO Search Full",
+    "description": "Scrapes search results with full metadata from mto.to and fetches chapter pages",
+    "types": {
+      "fields": [
+        { "name": "manga_id", "type": "string" },
+        { "name": "manga_name", "type": "string" },
+        { "name": "manga_image", "type": "url" },
+        { "name": "manga_description", "type": "string" },
+        { "name": "genres", "type": "string[]" },
+        { "name": "manga_chapters", "type": "object[]" },
+        { "name": "page_num", "type": "number" },
+        { "name": "page_image", "type": "url" }
+      ]
     },
-    "ProfileTarget": {
-      "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
-      "Image": { "selector": "a.item-cover img", "attribute": "src" },
-      "Name": { "selector": "a.item-title" },
-      "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
-      "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
-      "Chapters": {
-        "selector": ".item-volch a.visited",
-        "attribute": "href",
-        "text": true,
-        "multiple": true,
-        "arranger": "newestFirst"
-      }
-    },
-    "Name": { "selector": "a.item-title" },
-    "HighlightText": { "selector": ".highlight-text" },
-    "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
-    "profileById": {
-      "urlPattern": "https://mto.to/series/{manga_id}/",
+    "targetUrl": "https://mto.to/search?word={query}",
+    "itemConfig": {
+      "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
+      "ProfileLink": {
+        "selector": "a.item-cover, a.item-title",
+        "attribute": "href"
+      },
       "ProfileTarget": {
-        "Url": { "selector": "body", "attribute": "data-url" },
-        "Image": { "selector": ".attr-cover img", "attribute": "src" },
-        "Name": { "selector": ".mt-4.d-flex.justify-content-between.title-set h3.item-title a" },
-        "Description": { "selector": ".row.detail-set .attr-main > div[style*='white-space']" },
-        "Genres": {
-          "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
-          "multiple": true
-        },
+        "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
+        "Image": { "selector": "a.item-cover img", "attribute": "src" },
+        "Name": { "selector": "a.item-title" },
+        "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
+        "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
         "Chapters": {
-          "selector": ".mt-4.episode-list .main .item a.visited.chapt",
+          "selector": ".item-volch a.visited",
           "attribute": "href",
           "text": true,
           "multiple": true,
           "arranger": "newestFirst"
+        }
+      },
+      "Name": { "selector": "a.item-title" },
+      "HighlightText": { "selector": ".highlight-text" },
+      "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
+      "profileById": {
+        "urlPattern": "https://mto.to/series/{manga_id}/",
+        "ProfileTarget": {
+          "Url": { "selector": "body", "attribute": "data-url" },
+          "Image": { "selector": ".attr-cover img", "attribute": "src" },
+          "Name": { "selector": ".mt-4.d-flex.justify-content-between.title-set h3.item-title a" },
+          "Description": { "selector": ".row.detail-set .attr-main > div[style*='white-space']" },
+          "Genres": {
+            "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
+            "multiple": true
+          },
+          "Chapters": {
+            "selector": ".mt-4.episode-list .main .item a.visited.chapt",
+            "attribute": "href",
+            "text": true,
+            "multiple": true,
+            "arranger": "newestFirst"
+          },
+          "PageImage": {
+            "arrayVar": {
+              "variableNames": ["imgHttps"],
+              "matchPattern": "https://",
+              "scriptMatch": "const imgHttps"
+            }
+          }
         }
       }
     }
