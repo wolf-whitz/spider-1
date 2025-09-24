@@ -1,0 +1,14 @@
+{
+  "crawlers": [
+    {
+      "id": "mto_search_full",
+      "name": "MTO Search Full",
+      "link": "https://mto.to/search?word={query}"
+    },
+    {
+      "id": "spider_hentai20",
+      "name": "Spider Hentai 20",
+      "link": "https://hentai20.example.com" 
+    }
+  ]
+}
