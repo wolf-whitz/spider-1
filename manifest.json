@@ -1,34 +1,14 @@
 {
   "crawlers": [
     {
-      "id": "mto_search_full",
-      "displayName": "MTO Search Full",
+      "name": "MTO Search Full",
       "description": "Scrapes search results with full metadata from mto.to",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json",
-      "getter": "mto_chapter_getter"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
     },
     {
-      "id": "hentai20_search",
-      "displayName": "Hentai20 Search",
+      "name": "Hentai20 Search",
       "description": "Scrapes search results from hentai20.io",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json",
-      "getter": "hentai20_chapter_getter"
-    }
-  ],
-  "getters": [
-    {
-      "id": "mto_chapter_getter",
-      "displayName": "MTO Chapter Getter",
-      "description": "Fetches chapter list and details from a manga detail page",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/Spider-bato.getter.json",
-      "crawlerId": "mto_search_full"
-    },
-    {
-      "id": "hentai20_chapter_getter",
-      "displayName": "Hentai20 Chapter Getter",
-      "description": "Fetches chapter list and details from a hentai20 page",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/Spider-hentai20.getter.json",
-      "crawlerId": "hentai20_search"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json"
     }
   ]
 }
