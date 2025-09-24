@@ -5,14 +5,16 @@
       "name": "MTO_Search_Full",
       "description": "Scrapes search results with full metadata from mto.to",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json",
-      "link_name": "spider-bato.json"
+      "link_name": "spider-bato.json",
+      "getter": "MTO_Chapter_Getter"
     },
     {
       "type": "crawler",
       "name": "Hentai20_Search",
       "description": "Scrapes search results from hentai20.io",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json",
-      "link_name": "spider-hentai20.json"
+      "link_name": "spider-hentai20.json",
+      "getter": "Hentai20_Chapter_Getter"
     },
     {
       "type": "getter",
