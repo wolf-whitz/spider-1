@@ -21,7 +21,8 @@
       "name": "Chapter_Getter",
       "description": "Fetches chapter list and details from a manga detail page",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/Spider-bato.getter.json",
-      "link_name": "Spider-bato.getter.json"
+      "link_name": "Spider-bato.getter.json",
+      "crawler": "MTO_Search_Full"
     }
   ]
 }
