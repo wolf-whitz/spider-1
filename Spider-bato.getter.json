@@ -13,7 +13,8 @@
     "PageImage": {
       "arrayVar": {
         "variableNames": ["imgHttps"],
-        "matchPattern": "https://"
+        "matchPattern": "https://",
+        "scriptMatch": "const imgHttps"
       }
     }
   }
