@@ -1,5 +1,5 @@
 {
-  "spider_crawlers": [
+  "items": [
     {
       "type": "crawler",
       "name": "MTO_Search_Full",
@@ -13,9 +13,7 @@
       "description": "Scrapes search results from hentai20.io",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json",
       "link_name": "spider-hentai20.json"
-    }
-  ],
-  "spider_getters": [
+    },
     {
       "type": "getter",
       "name": "Chapter_Getter",
