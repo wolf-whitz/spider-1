@@ -1,11 +1,13 @@
 {
   "crawlers": [
     {
+      "id": "mto_search_full",
       "name": "MTO Search Full",
       "description": "Scrapes search results with full metadata from mto.to",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
     },
     {
+      "id": "hentai20_search",
       "name": "Hentai20 Search",
       "description": "Scrapes search results from hentai20.io",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/main/spider-hentai20.json"
