@@ -1,5 +1,6 @@
 {
-  "name": "MTO_Search_Full",
+  "id": "mto_search_full",
+  "name": "MTO Search Full",
   "description": "Scrapes search results with full metadata from mto.to",
   "types": {
     "fields": [
