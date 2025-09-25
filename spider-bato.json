@@ -41,6 +41,10 @@
       "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "profileById": {
         "urlPattern": "https://mto.to{manga_id}/",
+        "replace": {
+          "pattern": "^/series/",
+          "with": "/series/"
+        },
         "ProfileTarget": {
           "Url": { "selector": "body", "attribute": "data-url" },
           "Image": { "selector": ".attr-cover img", "attribute": "src" },
