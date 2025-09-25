@@ -4,11 +4,6 @@
       "id": "mto_search_full",
       "name": "MTO Search Full",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
-    },
-    {
-      "id": "spider_hentai20",
-      "name": "Spider Hentai 20",
-      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-hentai20.json" 
     }
   ]
 }
