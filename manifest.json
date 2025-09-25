@@ -3,7 +3,7 @@
     {
       "id": "mto_search_full",
       "name": "MTO Search Full",
-      "link": "https://mto.to/search?word={query}"
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
     },
     {
       "id": "spider_hentai20",
