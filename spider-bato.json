@@ -40,7 +40,7 @@
       "HighlightText": { "selector": ".highlight-text" },
       "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "profileById": {
-        "urlPattern": "https://mto.to/series/{manga_id}/",
+        "urlPattern": "https://mto.to{manga_id}/",
         "ProfileTarget": {
           "Url": { "selector": "body", "attribute": "data-url" },
           "Image": { "selector": ".attr-cover img", "attribute": "src" },
