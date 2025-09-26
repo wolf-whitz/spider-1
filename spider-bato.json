@@ -1,8 +1,8 @@
 {
   "spider": {
-    "id": "mto_search_full",
-    "name": "MTO Search Full",
-    "description": "Scrapes search results with full metadata from mto.to and fetches chapter pages",
+    "id": "comick_full",
+    "name": "Comick Full",
+    "description": "Scrapes search results and profile metadata from comick using embedded JSON in <script> tags",
     "types": {
       "fields": [
         { "name": "manga_id", "type": "string" },
@@ -10,62 +10,39 @@
         { "name": "manga_image", "type": "url" },
         { "name": "manga_description", "type": "string" },
         { "name": "genres", "type": "string[]" },
-        { "name": "manga_chapters", "type": "object[]" },
-        { "name": "page_num", "type": "number" },
-        { "name": "page_image", "type": "url" }
+        { "name": "manga_chapters", "type": "object[]" }
       ]
     },
-    "targetUrl": "https://mto.to/search?word={query}",
+    "targetUrl": "https://comick.art/search?q={query}",
     "itemConfig": {
-      "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
+      "source": "script#sv-data",
+      "jsonPath": "$.data[*]",
       "ProfileLink": {
-        "selector": "a.item-cover, a.item-title",
-        "attribute": "href"
+        "jsonPath": "$.slug",
+        "formatter": "https://comick.live/comic/{value}"
       },
       "ProfileTarget": {
-        "Url": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
-        "Image": { "selector": "a.item-cover img", "attribute": "src" },
-        "Name": { "selector": "a.item-title" },
-        "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
-        "MangaID": { "selector": "a.item-cover, a.item-title", "attribute": "href" },
-        "Chapters": {
-          "selector": ".item-volch a.visited",
-          "attribute": "href",
-          "text": true,
-          "multiple": true,
-          "arranger": "newestFirst"
-        }
+        "manga_id": { "jsonPath": "$.id" },
+        "manga_name": { "jsonPath": "$.title" },
+        "manga_image": { "jsonPath": "$.default_thumbnail" },
+        "manga_description": { "jsonPath": "$.description" },
+        "genres": { "jsonPath": "$.titles[*]", "multiple": true }
       },
-      "Name": { "selector": "a.item-title" },
-      "HighlightText": { "selector": ".highlight-text" },
-      "Genres": { "selector": ".item-genre span, .item-genre u, .item-genre b", "multiple": true },
       "profileById": {
-        "urlPattern": "https://mto.to{manga_id}/",
-        "replace": {
-          "pattern": "^/series/",
-          "with": "/series/"
-        },
+        "urlPattern": "https://comick.live/comic/{manga_id}",
         "ProfileTarget": {
-          "Url": { "selector": "body", "attribute": "data-url" },
-          "Image": { "selector": ".attr-cover img", "attribute": "src" },
-          "Name": { "selector": ".mt-4.d-flex.justify-content-between.title-set h3.item-title a" },
-          "Description": { "selector": ".row.detail-set .attr-main > div[style*='white-space']" },
-          "Genres": {
-            "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
-            "multiple": true
-          },
-          "Chapters": {
-            "selector": ".mt-4.episode-list .main .item a.visited.chapt",
-            "attribute": "href",
-            "text": true,
-            "multiple": true,
-            "arranger": "newestFirst"
-          },
-          "PageImage": {
-            "arrayVar": {
-              "variableNames": ["imgHttps"],
-              "matchPattern": "https://",
-              "scriptMatch": "const imgHttps"
+          "source": "script#comic-data",
+          "manga_id": { "jsonPath": "$.id" },
+          "manga_name": { "jsonPath": "$.title" },
+          "manga_image": { "jsonPath": "$.default_thumbnail" },
+          "manga_description": { "jsonPath": "$.desc" },
+          "manga_chapters": {
+            "jsonPath": "$.firstChapters[*]",
+            "fields": {
+              "chapter_id": { "jsonPath": "$.id" },
+              "chapter_num": { "jsonPath": "$.chap" },
+              "chapter_lang": { "jsonPath": "$.lang" },
+              "chapter_group": { "jsonPath": "$.group_name" }
             }
           }
         }
