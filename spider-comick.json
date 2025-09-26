@@ -1,0 +1,28 @@
+{
+  "spider": {
+    "id": "comick_search_full",
+    "name": "Comick Search Full",
+    "description": "Scrapes search results with full metadata from comick.art using the JSON in <script id='sv-data'>",
+    "types": {
+      "fields": [
+        { "name": "manga_id", "type": "string" },
+        { "name": "manga_name", "type": "string" },
+        { "name": "manga_image", "type": "url" },
+        { "name": "manga_description", "type": "string" },
+        { "name": "genres", "type": "string[]" }
+      ]
+    },
+    "targetUrl": "https://comick.art/search?q={query}",
+    "itemConfig": {
+      "source": "script#sv-data",
+      "jsonPath": "$.data[*]",
+      "ProfileTarget": {
+        "manga_id": { "jsonPath": "$.id" },
+        "manga_name": { "jsonPath": "$.title" },
+        "manga_image": { "jsonPath": "$.default_thumbnail" },
+        "manga_description": { "jsonPath": "$.description" },
+        "genres": { "jsonPath": "$.titles[*]", "multiple": true }
+      }
+    }
+  }
+}
