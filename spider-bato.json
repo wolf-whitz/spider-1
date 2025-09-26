@@ -1,8 +1,8 @@
 {
   "spider": {
-    "id": "mto_search_full",
-    "name": "MTO Search Full",
-    "description": "Scrapes search results with full metadata from mto.to and fetches chapter pages",
+    "id": "comick_full",
+    "name": "Comick Full",
+    "description": "Scrapes search results and profile metadata from comick.live",
     "types": {
       "fields": [
         { "name": "manga_id", "type": "string" },
@@ -15,89 +15,92 @@
         { "name": "page_image", "type": "url" }
       ]
     },
-    "targetUrl": "https://mto.to/search?word={query}",
+    "targetUrl": "https://comick.live/search?q={query}",
     "itemConfig": {
-      "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
+      "selector": "script#sv-data",
       "ProfileLink": {
-        "selector": "a.item-cover, a.item-title",
-        "attribute": "href"
+        "selector": "script#sv-data",
+        "attribute": "data-slug"
       },
       "ProfileTarget": {
         "Url": {
-          "selector": "a.item-cover, a.item-title",
-          "attribute": "href"
+          "selector": "script#sv-data",
+          "attribute": "data-slug"
         },
         "Image": {
-          "selector": "a.item-cover img",
-          "attribute": "src"
+          "selector": "script#sv-data",
+          "attribute": "data-thumbnail"
         },
         "Name": {
-          "selector": "a.item-title"
+          "selector": "script#sv-data"
+        },
+        "Description": {
+          "selector": "script#sv-data"
         },
         "Genres": {
-          "selector": ".item-genre span, .item-genre u, .item-genre b",
+          "selector": "script#sv-data",
           "multiple": true
         },
         "MangaID": {
-          "selector": "a.item-cover, a.item-title",
-          "attribute": "href"
+          "selector": "script#sv-data",
+          "attribute": "data-id"
         },
         "Chapters": {
-          "selector": ".item-volch a.visited",
-          "attribute": "href",
-          "text": true,
+          "selector": "script#sv-data",
+          "attribute": "data-chapters",
           "multiple": true,
           "arranger": "newestFirst"
         }
       },
       "Name": {
-        "selector": "a.item-title"
-      },
-      "HighlightText": {
-        "selector": ".highlight-text"
+        "selector": "script#sv-data"
       },
       "Genres": {
-        "selector": ".item-genre span, .item-genre u, .item-genre b",
+        "selector": "script#sv-data",
         "multiple": true
       },
       "profileById": {
-        "urlPattern": "https://mto.to{manga_id}/",
-        "replace": {
-          "pattern": "^/series/",
-          "with": "/series/"
-        },
+        "urlPattern": "https://comick.live/comic/{manga_id}",
         "ProfileTarget": {
           "Url": {
-            "selector": "body",
-            "attribute": "data-url"
+            "selector": "script#comic-data",
+            "attribute": "data-slug"
           },
           "Image": {
-            "selector": ".attr-cover img",
-            "attribute": "src"
+            "selector": "script#comic-data",
+            "attribute": "data-thumbnail"
           },
           "Name": {
-            "selector": ".mt-4.d-flex.justify-content-between.title-set h3.item-title a"
+            "selector": "script#comic-data"
           },
           "Description": {
-            "selector": ".row.detail-set .attr-main > div[style*='white-space']"
+            "selector": "script#comic-data"
           },
           "Genres": {
-            "selector": ".attr-item b:contains('Genres:') + span span, .attr-item b:contains('Genres:') + span u",
+            "selector": "script#comic-data",
             "multiple": true
           },
+          "MangaID": {
+            "selector": "script#comic-data",
+            "attribute": "data-id"
+          },
           "Chapters": {
-            "selector": ".mt-4.episode-list .main .item a.visited.chapt",
-            "attribute": "href",
-            "text": true,
+            "selector": "script#comic-data",
+            "attribute": "data-chapters",
             "multiple": true,
             "arranger": "newestFirst"
           },
           "PageImage": {
-            "arrayVar": {
-              "variableNames": ["imgHttps"],
-              "matchPattern": "https://",
-              "scriptMatch": "const imgHttps"
-            }
+            "selectors": [
+              "[\\:class=\"!isSidebarOpen ? 'relative' : 'absolute'\"]",
+              ".xl\\:pt-0.w-full.\\35 xl\\:w-auto.z-0.relative",
+              "[\\@click=\"toggleModal('isHeaderVisible')\"]",
+              "div",
+              "[x-intersect\\.enter=\"trackImageView(index)\"]",
+              "img"
+            ],
+            "attribute": "src",
+            "multiple": true
           }
         }
       }
