@@ -2,7 +2,7 @@
   "spider": {
     "id": "comick_full",
     "name": "Comick Full",
-    "description": "Scrapes search results and profile metadata from comick using embedded JSON in <script> tags",
+    "description": "Scrapes search results and profile metadata from comick.live",
     "types": {
       "fields": [
         { "name": "manga_id", "type": "string" },
@@ -13,38 +13,32 @@
         { "name": "manga_chapters", "type": "object[]" }
       ]
     },
-    "targetUrl": "https://comick.art/search?q={query}",
+    "targetUrl": "https://comick.live/search?q={query}",
     "itemConfig": {
-      "source": "script#sv-data",
-      "jsonPath": "$.data[*]",
+      "selector": "script#sv-data", 
       "ProfileLink": {
-        "jsonPath": "$.slug",
-        "formatter": "https://comick.live/comic/{value}"
+        "selector": "script#sv-data",
+        "attribute": "data-slug"
       },
       "ProfileTarget": {
-        "manga_id": { "jsonPath": "$.id" },
-        "manga_name": { "jsonPath": "$.title" },
-        "manga_image": { "jsonPath": "$.default_thumbnail" },
-        "manga_description": { "jsonPath": "$.description" },
-        "genres": { "jsonPath": "$.titles[*]", "multiple": true }
+        "Url": { "selector": "script#sv-data", "attribute": "data-slug" },
+        "Image": { "selector": "script#sv-data", "attribute": "data-thumbnail" },
+        "Name": { "selector": "script#sv-data" },
+        "Description": { "selector": "script#sv-data" },
+        "Genres": { "selector": "script#sv-data", "multiple": true },
+        "MangaID": { "selector": "script#sv-data", "attribute": "data-id" },
+        "Chapters": { "selector": "script#sv-data", "attribute": "data-chapters" }
       },
       "profileById": {
         "urlPattern": "https://comick.live/comic/{manga_id}",
         "ProfileTarget": {
-          "source": "script#comic-data",
-          "manga_id": { "jsonPath": "$.id" },
-          "manga_name": { "jsonPath": "$.title" },
-          "manga_image": { "jsonPath": "$.default_thumbnail" },
-          "manga_description": { "jsonPath": "$.desc" },
-          "manga_chapters": {
-            "jsonPath": "$.firstChapters[*]",
-            "fields": {
-              "chapter_id": { "jsonPath": "$.id" },
-              "chapter_num": { "jsonPath": "$.chap" },
-              "chapter_lang": { "jsonPath": "$.lang" },
-              "chapter_group": { "jsonPath": "$.group_name" }
-            }
-          }
+          "Url": { "selector": "script#comic-data", "attribute": "data-slug" },
+          "Image": { "selector": "script#comic-data", "attribute": "data-thumbnail" },
+          "Name": { "selector": "script#comic-data" },
+          "Description": { "selector": "script#comic-data" },
+          "Genres": { "selector": "script#comic-data", "multiple": true },
+          "MangaID": { "selector": "script#comic-data", "attribute": "data-id" },
+          "Chapters": { "selector": "script#comic-data", "attribute": "data-chapters" }
         }
       }
     }
