@@ -4,6 +4,11 @@
       "id": "mto_search_full",
       "name": "MTO Search Full",
       "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
+    },
+      {
+      "id": "comick_search_full",
+      "name": "Comick Search Full",
+      "link": "https://raw.githubusercontent.com/wolf-whitz/spider-1/refs/heads/main/spider-bato.json"
     }
   ]
 }
