@@ -18,79 +18,55 @@
     "targetUrl": "https://comick.live/search?q={query}",
     "itemConfig": {
       "selector": "script#sv-data",
-      "ProfileLink": {
-        "selector": "script#sv-data",
-        "attribute": "data-slug",
-        "parseScriptJson": true,
-        "jsonPath": "comic.slug"
-      },
       "ProfileTarget": {
         "Url": {
           "selector": "script#sv-data",
-          "attribute": "data-slug",
           "parseScriptJson": true,
-          "jsonPath": "comic.slug"
+          "jsonPath": "data[*].slug"
         },
         "Image": {
           "selector": "script#sv-data",
-          "attribute": "data-thumbnail",
           "parseScriptJson": true,
-          "jsonPath": "comic.thumbnail"
+          "jsonPath": "data[*].default_thumbnail"
         },
         "Name": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "comic.title"
+          "jsonPath": "data[*].title"
         },
         "Description": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "comic.desc"
+          "jsonPath": "data[*].description"
         },
         "Genres": {
           "selector": "script#sv-data",
           "multiple": true,
           "parseScriptJson": true,
-          "jsonPath": "comic.genres[*].name"
+          "jsonPath": "data[*].genres[*].name"
         },
         "MangaID": {
           "selector": "script#sv-data",
-          "attribute": "data-id",
           "parseScriptJson": true,
-          "jsonPath": "comic.id"
+          "jsonPath": "data[*].id"
         },
         "Chapters": {
           "selector": "script#sv-data",
-          "attribute": "data-chapters",
           "multiple": true,
-          "arranger": "newestFirst",
           "parseScriptJson": true,
-          "jsonPath": "chapters"
+          "jsonPath": "data[*].last_chapter"
         }
-      },
-      "Name": {
-        "selector": "script#sv-data",
-        "parseScriptJson": true,
-        "jsonPath": "comic.title"
-      },
-      "Genres": {
-        "selector": "script#sv-data",
-        "multiple": true,
-        "parseScriptJson": true,
-        "jsonPath": "comic.genres[*].name"
       },
       "profileById": {
         "urlPattern": "https://comick.live/comic/{manga_id}",
         "ProfileTarget": {
           "Url": {
             "selector": "script#comic-data",
-            "attribute": "data-slug",
             "parseScriptJson": true,
             "jsonPath": "comic.slug"
           },
           "Image": {
             "selector": "script#comic-data",
-            "attribute": "data-thumbnail",
             "parseScriptJson": true,
             "jsonPath": "comic.thumbnail"
           },
@@ -112,15 +88,12 @@
           },
           "MangaID": {
             "selector": "script#comic-data",
-            "attribute": "data-id",
             "parseScriptJson": true,
             "jsonPath": "comic.id"
           },
           "Chapters": {
             "selector": "script#comic-data",
-            "attribute": "data-chapters",
             "multiple": true,
-            "arranger": "newestFirst",
             "parseScriptJson": true,
             "jsonPath": "chapters"
           },
