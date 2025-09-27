@@ -36,14 +36,16 @@ const spider = createSpider("tapas_full")
         Name: { selector: "script", parseScriptJson: true, jsonPath: "$.series.title", fetch: true },
         Description: { selector: "script", parseScriptJson: true, jsonPath: "$.series.description", fetch: true },
         Genres: { selector: "script", parseScriptJson: true, jsonPath: "$.series.genres[*]", multiple: true, fetch: true },
-        Chapters: { 
+        Chapters: {
           selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
           parseScriptJson: true,
-          jsonPath: "$.data.episodes",
-          fetch: true 
+          jsonPath: "$.data.episodes[*]",
+          multiple: true,
+          arranger: "newestFirst",
+          fetch: true
         },
-        PageImage: { 
-          selector: "script",
+        PageImage: {
+          selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
           parseScriptJson: true,
           jsonPath: "$.data.episodes[*].thumb_url",
           multiple: true,
