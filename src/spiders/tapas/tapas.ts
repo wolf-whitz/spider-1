@@ -9,17 +9,16 @@ const spider = createSpider("tapas_full")
   .field("manga_description", "string")
   .field("genres", "string[]")
   .field("episodes", "object[]")
-  .field("page_num", "number")
   .field("page_image", "url")
   .targetUrl("https://tapas.io/search?q={query}")
   .itemConfig((item: ItemConfigBuilder) => {
     item.selector(
       "div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap"
-    );
+    )
 
-    item.Name({ selector: "p.title a strong", text: true });
-    item.Genres({ selector: "p.tag a", multiple: true });
-    item.profileLink({ selector: "p.title a", attribute: "href" });
+    item.Name({ selector: "p.title a strong", text: true })
+    item.Genres({ selector: "p.tag a", multiple: true, text: true })
+    item.profileLink({ selector: "p.title a", attribute: "href" })
 
     item.profileById({
       urlPattern: "https://tapas.io/series/{manga_id}/info",
@@ -73,7 +72,7 @@ const spider = createSpider("tapas_full")
           fetch: true,
         },
       },
-    });
-  });
+    })
+  })
 
-spider.save();
+spider.save()
