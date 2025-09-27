@@ -1,20 +1,44 @@
 {
   "spider": {
     "id": "mto_search_full",
-    "name": "MTO Search Full",
-    "description": "Scrapes search results with full metadata from mto.to and fetches chapter pages",
     "types": {
       "fields": [
-        { "name": "manga_id", "type": "string" },
-        { "name": "manga_name", "type": "string" },
-        { "name": "manga_image", "type": "url" },
-        { "name": "manga_description", "type": "string" },
-        { "name": "genres", "type": "string[]" },
-        { "name": "manga_chapters", "type": "object[]" },
-        { "name": "page_num", "type": "number" },
-        { "name": "page_image", "type": "url" }
+        {
+          "name": "manga_id",
+          "type": "string"
+        },
+        {
+          "name": "manga_name",
+          "type": "string"
+        },
+        {
+          "name": "manga_image",
+          "type": "url"
+        },
+        {
+          "name": "manga_description",
+          "type": "string"
+        },
+        {
+          "name": "genres",
+          "type": "string[]"
+        },
+        {
+          "name": "manga_chapters",
+          "type": "object[]"
+        },
+        {
+          "name": "page_num",
+          "type": "number"
+        },
+        {
+          "name": "page_image",
+          "type": "url"
+        }
       ]
     },
+    "name": "MTO Search Full",
+    "description": "Scrapes search results with full metadata from mto.to and fetches chapter pages",
     "targetUrl": "https://mto.to/search?word={query}",
     "itemConfig": {
       "selector": "#series-list .col.item.line-b, #series-list .col.item.line-b.no-flag",
@@ -94,7 +118,9 @@
           },
           "PageImage": {
             "arrayVar": {
-              "variableNames": ["imgHttps"],
+              "variableNames": [
+                "imgHttps"
+              ],
               "matchPattern": "https://",
               "scriptMatch": "const imgHttps"
             }
@@ -102,5 +128,6 @@
         }
       }
     }
-  }
+  },
+  "token": "62a20180846cfa6e0451853685beaedf"
 }
