@@ -15,13 +15,13 @@ const spider = createSpider("comick_full")
     item.selector("script#sv-data")
       .profileTarget((target: ProfileTargetBuilder) => {
         target
-          .Url({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].slug" })
-          .Image({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].default_thumbnail", multiple: true })
-          .Name({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].title", multiple: true })
-          .Description({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].description", multiple: true })
-          .Genres({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].genres[*].name", multiple: true })
-          .MangaID({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].id", multiple: true })
-          .Chapters({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[*].last_chapter", multiple: true })
+          .Url({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].slug" })
+          .Image({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].default_thumbnail" })
+          .Name({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].title" })
+          .Description({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].description" })
+          .Genres({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].genres[*].name", multiple: true })
+          .MangaID({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].id" })
+          .Chapters({ selector: "script#sv-data", parseScriptJson: true, jsonPath: "$.data[0].last_chapter" })
       })
       .profileById({
         urlPattern: "https://comick.live/comic/{manga_id}",
