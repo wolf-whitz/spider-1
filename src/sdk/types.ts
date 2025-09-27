@@ -13,6 +13,7 @@ export interface SelectorConfig {
   arranger?: "newestFirst" | "oldestFirst"
   parseScriptJson?: boolean
   jsonPath?: string
+  fetch?: boolean
 }
 
 export interface ProfileTargetConfig {
@@ -24,11 +25,13 @@ export interface ProfileTargetConfig {
   MangaID?: SelectorConfig
   Chapters?: SelectorConfig
   PageImage?: any
+  fetch?: boolean
 }
 
 export interface ProfileByIdConfig {
   urlPattern: string
   replace?: { pattern: string; with: string }
+  fetch?: boolean
   ProfileTarget: ProfileTargetConfig
 }
 
@@ -80,6 +83,7 @@ export interface IItemConfigBuilder {
   HighlightText(cfg: SelectorConfig): this
   Genres(cfg: SelectorConfig): this
   profileById(cfg: ProfileByIdConfig): this
+  fetch(fetch?: boolean): this
   build(): SpiderItemConfig
 }
 
@@ -92,9 +96,8 @@ export interface IProfileTargetBuilder {
   MangaID(cfg: SelectorConfig): this
   Chapters(cfg: SelectorConfig): this
   PageImage(cfg: any): this
+  fetch(fetch?: boolean): this
   build(): ProfileTargetConfig
 }
 
 export type ItemConfigBuilder = IItemConfigBuilder
-export type ProfileTargetBuilder = IProfileTargetBuilder
-export type SpiderBuilder = ISpiderBuilder

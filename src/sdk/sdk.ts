@@ -38,7 +38,7 @@ export class SpiderBuilder {
   }
 
   build(): SpiderJSON {
-    return buildSpiderJson(this.config, this.token)
+    return buildSpiderJson(this.config)
   }
 
   save(): string {
@@ -62,6 +62,11 @@ export class ItemConfigBuilder implements IItemConfigBuilder {
   HighlightText(cfg: SelectorConfig) { this.config.HighlightText = cfg; return this }
   Genres(cfg: SelectorConfig) { this.config.Genres = cfg; return this }
   profileById(cfg: ProfileByIdConfig) { this.config.profileById = cfg; return this }
+  fetch(fetch?: boolean) {
+    if (!this.config.profileById) this.config.profileById = { urlPattern: "", ProfileTarget: {} }
+    this.config.profileById.fetch = fetch
+    return this
+  }
   build() { return this.config }
 }
 
@@ -76,6 +81,7 @@ export class ProfileTargetBuilder implements IProfileTargetBuilder {
   MangaID(cfg: SelectorConfig) { this.config.MangaID = cfg; return this }
   Chapters(cfg: SelectorConfig) { this.config.Chapters = cfg; return this }
   PageImage(cfg: any) { this.config.PageImage = cfg; return this }
+  fetch(fetch?: boolean) { this.config.fetch = fetch; return this }
   build() { return this.config }
 }
 
