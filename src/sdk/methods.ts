@@ -1,22 +1,14 @@
 import * as fs from "fs"
 import * as path from "path"
-import { createHash } from "crypto"
 import { validateSpiderJson } from "./validation.ts"
 import type { SpiderJSON, SpiderConfig, ManifestCrawler } from "./types.ts"
 
 const GITHUB_BASE_URL = "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds"
 
-const _FIXED_TOKEN = "2f3e5b8f3c4a1e6d9b7c2f3a1e4b6d7c9f0a1b2c3d4e5f6789abcdef012345678"
-
-function hashToken(token: string): string {
-  return createHash("sha256").update(token).digest("hex")
-}
-
-const FIXED_TOKEN_HASH = hashToken(_FIXED_TOKEN)
-Object.freeze(FIXED_TOKEN_HASH)
+const FIXED_TOKEN = "2f3e5b8f3c4a1e6d9b7c2f3a1e4b6d7c9f0a1b2c3d4e5f6789abcdef012345678"
 
 export function buildSpiderJson(config: SpiderConfig): SpiderJSON {
-  const spiderJson = Object.freeze({ spider: Object.freeze(config), token: FIXED_TOKEN_HASH })
+  const spiderJson = Object.freeze({ spider: Object.freeze(config), token: FIXED_TOKEN })
   validateSpiderJson(spiderJson)
   return spiderJson
 }
@@ -48,5 +40,5 @@ function updateManifest(spiderJson: SpiderJSON) {
 }
 
 export function generateToken(): string {
-  return FIXED_TOKEN_HASH
+  return FIXED_TOKEN
 }
