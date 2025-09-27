@@ -1,4 +1,4 @@
-import { createSpider, ItemConfigBuilder } from "@sdk"
+import { createSpider } from "@sdk"
 
 const spider = createSpider("tapas_full")
   .name("Tapas Full Search & Episodes")
@@ -11,65 +11,47 @@ const spider = createSpider("tapas_full")
   .field("episodes", "object[]")
   .field("page_image", "url")
   .targetUrl("https://tapas.io/search?q={query}")
-  .itemConfig((item: ItemConfigBuilder) => {
+  .itemConfig(item => {
     item.selector("div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap")
 
     item.Name({ selector: "p.title a strong", text: true })
     item.Genres({ selector: "p.tag a", multiple: true, text: true })
+    item.HighlightText({ selector: "p.desc", text: true })
     item.profileLink({ selector: "p.title a", attribute: "href" })
+    item.profileTarget(pt => {
+      pt.Url({ selector: "p.title a", attribute: "href" })
+      pt.Image({ selector: "div.item-thumb-wrap img", attribute: "src" })
+      pt.Name({ selector: "p.title a strong", text: true })
+      pt.Genres({ selector: "p.tag a", multiple: true, text: true })
+      pt.MangaID({ selector: "p.title a", attribute: "href" })
+    })
 
     item.profileById({
       urlPattern: "https://tapas.io/series/{manga_id}/info",
       fetch: true,
       ProfileTarget: {
-        MangaID: {
-          selector: "script",
-          parseScriptJson: true,
-          jsonPath: "$.series.id",
-          fetch: true,
-        },
-        Name: {
-          selector: "script",
-          parseScriptJson: true,
-          jsonPath: "$.series.title",
-          fetch: true,
-        },
-        Image: {
-          selector: "script",
-          parseScriptJson: true,
-          jsonPath: "$.series.thumbnail",
-          fetch: true,
-        },
-        Description: {
-          selector: "script",
-          parseScriptJson: true,
-          jsonPath: "$.series.description",
-          fetch: true,
-        },
-        Genres: {
-          selector: "script",
-          parseScriptJson: true,
-          jsonPath: "$.series.genres[*]",
-          multiple: true,
-          fetch: true,
-        },
+        Url: { selector: "head link[rel='canonical']", attribute: "href" },
+        Image: { selector: "script", parseScriptJson: true, jsonPath: "$.series.thumbnail", fetch: true },
+        Name: { selector: "script", parseScriptJson: true, jsonPath: "$.series.title", fetch: true },
+        Description: { selector: "script", parseScriptJson: true, jsonPath: "$.series.description", fetch: true },
+        Genres: { selector: "script", parseScriptJson: true, jsonPath: "$.series.genres[*]", multiple: true, fetch: true },
         Chapters: {
           selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
           parseScriptJson: true,
           jsonPath: "$.data.episodes[*]",
           multiple: true,
           arranger: "newestFirst",
-          fetch: true,
+          fetch: true
         },
         PageImage: {
           arrayVar: {
             variableNames: ["thumb_url"],
             matchPattern: "https://",
-            scriptMatch: "thumb_url",
+            scriptMatch: "thumb_url"
           },
-          fetch: true,
-        },
-      },
+          fetch: true
+        }
+      }
     })
   })
 
