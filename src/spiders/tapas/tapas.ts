@@ -1,4 +1,4 @@
-import { createSpider, ItemConfigBuilder } from "@sdk";
+import { createSpider, ItemConfigBuilder } from "@sdk"
 
 const spider = createSpider("tapas_full")
   .name("Tapas Full Search & Episodes")
@@ -12,9 +12,7 @@ const spider = createSpider("tapas_full")
   .field("page_image", "url")
   .targetUrl("https://tapas.io/search?q={query}")
   .itemConfig((item: ItemConfigBuilder) => {
-    item.selector(
-      "div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap"
-    )
+    item.selector("div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap")
 
     item.Name({ selector: "p.title a strong", text: true })
     item.Genres({ selector: "p.tag a", multiple: true, text: true })
