@@ -42,38 +42,44 @@
         "Url": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].slug"
+          "jsonPath": "$.data[*].slug",
+          "multiple": true
         },
         "Image": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].default_thumbnail"
+          "jsonPath": "$.data[*].default_thumbnail",
+          "multiple": true
         },
         "Name": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].title"
+          "jsonPath": "$.data[*].title",
+          "multiple": true
         },
         "Description": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].description"
+          "jsonPath": "$.data[*].description",
+          "multiple": true
         },
         "Genres": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].genres[*].name",
+          "jsonPath": "$.data[*].genres[*].name",
           "multiple": true
         },
         "MangaID": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].id"
+          "jsonPath": "$.data[*].id",
+          "multiple": true
         },
         "Chapters": {
           "selector": "script#sv-data",
           "parseScriptJson": true,
-          "jsonPath": "$.data[0].last_chapter"
+          "jsonPath": "$.data[*].last_chapter",
+          "multiple": true
         }
       },
       "profileById": {
