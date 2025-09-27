@@ -25,6 +25,7 @@ const spider = createSpider("tapas_full")
       pt.Name({ selector: "p.title a strong", text: true })
       pt.Genres({ selector: "p.tag a", multiple: true, text: true })
       pt.MangaID({ selector: "p.title a", attribute: "href" })
+      pt.Chapters({ selector: "script", parseScriptJson: true, jsonPath: "$.data.episodes[*]", multiple: true, fetch: false }) 
     })
 
     item.profileById({
@@ -36,16 +37,16 @@ const spider = createSpider("tapas_full")
         Name: { selector: "script", parseScriptJson: true, jsonPath: "$.series.title", fetch: true },
         Description: { selector: "script", parseScriptJson: true, jsonPath: "$.series.description", fetch: true },
         Genres: { selector: "script", parseScriptJson: true, jsonPath: "$.series.genres[*]", multiple: true, fetch: true },
-        Chapters: {
+        Chapters: { 
           selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
           parseScriptJson: true,
-          jsonPath: "$.data.episodes[*]",
+          jsonPath: "$.data.episodes",
           multiple: true,
           arranger: "newestFirst",
           fetch: true
         },
-        PageImage: {
-          selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
+        PageImage: { 
+          selector: "script",
           parseScriptJson: true,
           jsonPath: "$.data.episodes[*].thumb_url",
           multiple: true,
