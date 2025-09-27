@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@types/jsonpath": "^0.2.4",
-    "jsonpath": "^1.1.1"
+    "@types/msgpack-lite": "^0.1.11",
+    "jsonpath": "^1.1.1",
+    "msgpack-lite": "^0.1.26"
   },
   "devDependencies": {
     "@types/bun": "latest",

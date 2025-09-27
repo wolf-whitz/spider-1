@@ -3,12 +3,17 @@
     {
       "id": "mto_search_full",
       "name": "MTO Search Full",
-      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/mto_search_full.json"
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/mto_search_full.msgpack"
     },
     {
       "id": "comick_full",
       "name": "Comick Full",
-      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/comick_full.json"
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/comick_full.msgpack"
+    },
+    {
+      "id": "tapas_full",
+      "name": "Tapas Full Search & Episodes",
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/tapas_full.msgpack"
     }
   ]
 }
