@@ -3,12 +3,12 @@
     {
       "id": "mto_search_full",
       "name": "MTO Search Full",
-      "link": "file:///home/whitz/spider-1/spider_builds/mto_search_full.json"
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/mto_search_full.json"
     },
     {
       "id": "comick_full",
       "name": "Comick Full",
-      "link": "file:///home/whitz/spider-1/spider_builds/comick_full.json"
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/comick_full.json"
     }
   ]
 }
