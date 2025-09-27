@@ -1,6 +1,6 @@
-import { SpiderBuilder, ItemConfigBuilder } from "@sdk"
+import { createSpider, ItemConfigBuilder } from "@sdk"
 
-const spider = new SpiderBuilder("tapas_full")
+const spider = createSpider("tapas_full")
   .name("Tapas Full Search & Episodes")
   .description("Scrapes Tapas search results, series metadata, and episodes with page images")
   .field("manga_id", "string")
@@ -13,11 +13,10 @@ const spider = new SpiderBuilder("tapas_full")
   .field("page_image", "url")
   .targetUrl("https://tapas.io/search?q={query}")
   .itemConfig((item: ItemConfigBuilder) => {
-    item.selector("div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap")
-
+    item.selector("div.series-list div.series-item")
     item.Name({ selector: "p.title a strong", text: true })
     item.Genres({ selector: "p.tag a", multiple: true })
-    item.profileLink({ selector: "p.title a", attribute: "href" })  
+    item.profileLink({ selector: "p.title a", attribute: "href" })
 
     item.profileById({
       urlPattern: "https://tapas.io/series/{manga_id}/info",
@@ -35,7 +34,13 @@ const spider = new SpiderBuilder("tapas_full")
           multiple: true,
           arranger: "newestFirst"
         },
-        PageImage: { arrayVar: { variableNames: ["thumb_url"], matchPattern: "https://", scriptMatch: "thumb_url" } }
+        PageImage: {
+          arrayVar: {
+            variableNames: ["thumb_url"], 
+            matchPattern: "https://", 
+            scriptMatch: "thumb_url"
+          }
+        }
       }
     })
   })
