@@ -18,6 +18,7 @@ const spider = createSpider("tapas_full")
     item.Genres({ selector: "p.tag a", multiple: true, text: true })
     item.HighlightText({ selector: "p.desc", text: true })
     item.profileLink({ selector: "p.title a", attribute: "href" })
+
     item.profileTarget(pt => {
       pt.Url({ selector: "p.title a", attribute: "href" })
       pt.Image({ selector: "div.item-thumb-wrap img", attribute: "src" })
@@ -35,20 +36,17 @@ const spider = createSpider("tapas_full")
         Name: { selector: "script", parseScriptJson: true, jsonPath: "$.series.title", fetch: true },
         Description: { selector: "script", parseScriptJson: true, jsonPath: "$.series.description", fetch: true },
         Genres: { selector: "script", parseScriptJson: true, jsonPath: "$.series.genres[*]", multiple: true, fetch: true },
-        Chapters: {
+        Chapters: { 
           selector: "https://tapas.io/series/{manga_id}/episodes?page=1",
           parseScriptJson: true,
-          jsonPath: "$.data.episodes[*]",
-          multiple: true,
-          arranger: "newestFirst",
-          fetch: true
+          jsonPath: "$.data.episodes",
+          fetch: true 
         },
-        PageImage: {
-          arrayVar: {
-            variableNames: ["thumb_url"],
-            matchPattern: "https://",
-            scriptMatch: "thumb_url"
-          },
+        PageImage: { 
+          selector: "script",
+          parseScriptJson: true,
+          jsonPath: "$.data.episodes[*].thumb_url",
+          multiple: true,
           fetch: true
         }
       }
