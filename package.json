@@ -5,8 +5,12 @@
     "build:spiders": "bun run builder.ts"
   },
   "dependencies": {
+    "@types/jsdom": "^27.0.0",
     "@types/jsonpath": "^0.2.4",
     "@types/msgpack-lite": "^0.1.11",
+    "axios": "^1.13.2",
+    "i": "^0.3.7",
+    "jsdom": "^27.2.0",
     "jsonpath": "^1.1.1",
     "msgpack-lite": "^0.1.26"
   },

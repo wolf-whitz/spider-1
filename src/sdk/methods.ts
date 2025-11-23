@@ -8,13 +8,19 @@ const GITHUB_BASE_URL = "https://github.com/wolf-whitz/spider-1/raw/main/spider_
 const FIXED_TOKEN = "2f3e5b8f3c4a1e6d9b7c2f3a1e4b6d7c9f0a1b2c3d4e5f6789abcdef012345678";
 
 export function buildSpiderJson(config: SpiderConfig): SpiderJSON {
-  const spiderJson = Object.freeze({ spider: Object.freeze(config), token: FIXED_TOKEN });
+  const spiderJson: SpiderJSON = Object.freeze({
+    spider: Object.freeze(config),
+    token: FIXED_TOKEN,
+  });
+
   validateSpiderJson(spiderJson);
   return spiderJson;
 }
 
 export function saveSpiderJson(spiderJson: SpiderJSON, outputFolder: string): string {
-  if (!fs.existsSync(outputFolder)) fs.mkdirSync(outputFolder, { recursive: true });
+  if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder, { recursive: true });
+  }
 
   const binPath = path.join(outputFolder, `${spiderJson.spider.id}.msgpack`);
   const packed = msgpack.encode(spiderJson);
@@ -29,7 +35,12 @@ function updateManifest(spiderJson: SpiderJSON) {
   let manifest: { crawlers: ManifestCrawler[] } = { crawlers: [] };
 
   if (fs.existsSync(manifestPath)) {
-    manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+    try {
+      manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+    } catch (err) {
+      console.warn(`⚠ Failed to parse existing manifest.json, starting fresh: ${err}`);
+      manifest = { crawlers: [] };
+    }
   }
 
   const link = `${GITHUB_BASE_URL}/${spiderJson.spider.id}.msgpack`;
@@ -37,7 +48,11 @@ function updateManifest(spiderJson: SpiderJSON) {
 
   if (!exists) {
     manifest.crawlers.push(
-      Object.freeze({ id: spiderJson.spider.id, name: spiderJson.spider.name || spiderJson.spider.id, link })
+      Object.freeze({
+        id: spiderJson.spider.id,
+        name: spiderJson.spider.name || spiderJson.spider.id,
+        link,
+      })
     );
   }
 

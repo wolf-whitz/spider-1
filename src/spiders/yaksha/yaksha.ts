@@ -12,8 +12,9 @@ const spider = createSpider("yaksha_full")
   .targetUrl("https://yakshascans.com/?s={query}&post_type=wp-manga")
   .itemConfig(item =>
     item
+      .selector(".tab-summary")
       .profileLink({
-        selector: ".tab-summary .post-title a",
+        selector: ".post-title a",
         attribute: "href"
       })
       .profileById({
@@ -24,13 +25,19 @@ const spider = createSpider("yaksha_full")
         },
         fetch: true,
         ProfileTarget: {
-          MangaID: {},
-          Name: {},
-          Image: {},
-          Description: {},
-          Genres: {},
-          Chapters: {},
-          PageImage: {}
+          MangaID: { selector: "body", text: true },
+          Name: { selector: ".post-title h1", text: true },
+          Image: { selector: ".summary_image img", attribute: "data-src" },
+          Description: { selector: ".summary__content p", multiple: true, text: true },
+          Genres: { selector: ".genres-content a", multiple: true, text: true },
+          Chapters: {
+            selector: ".listing-chapters_wrap .wp-manga-chapter a",
+            multiple: true,
+            arranger: "newestFirst",
+            fetch: true
+          },
+          PageImage: { selector: "img.wp-manga-chapter-img", attribute: "data-src", multiple: true },
+          fetch: true
         }
       })
       .profileTarget(target =>
