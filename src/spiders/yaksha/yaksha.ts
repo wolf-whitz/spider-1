@@ -15,15 +15,17 @@ const spider = createSpider("yaksha_full")
     item.selector(".c-tabs-item__content a");
     item.Name({ selector: ".c-tabs-item__content a", text: true });
     item.profileLink({ selector: ".c-tabs-item__content a", attribute: "href" });
+
     item.profileTarget(pt => {
-      pt.Url({ selector: ".c-tabs-item__content a", attribute: "href" });
+      pt.Url({ selector: "head link[rel='canonical']", attribute: "href" });
       pt.Name({ selector: ".post-title h1", text: true });
       pt.Image({ selector: ".summary_image img", attribute: "src" });
       pt.Description({ selector: ".description-summary", text: true });
-      pt.Genres({ selector: ".post-content_item a", multiple: true, text: true });
+      pt.Genres({ selector: ".genres-content a", multiple: true, text: true });
       pt.Chapters({ selector: ".listing-chapters_wrap ul.main.version-chap li.wp-manga-chapter a", multiple: true, text: true });
       pt.PageImage({ selector: ".reading-content .wp-manga-chapter-img", multiple: true, attribute: "src" });
     });
+
     item.profileById({
       urlPattern: "https://yakshascans.com/manga/{manga_id}/",
       fetch: true,
@@ -32,7 +34,7 @@ const spider = createSpider("yaksha_full")
         Image: { selector: ".summary_image img", attribute: "src" },
         Name: { selector: ".post-title h1", text: true },
         Description: { selector: ".description-summary", text: true },
-        Genres: { selector: ".post-content_item a", multiple: true, text: true },
+        Genres: { selector: ".genres-content a", multiple: true, text: true },
         Chapters: { selector: ".listing-chapters_wrap ul.main.version-chap li.wp-manga-chapter a", multiple: true, text: true },
         PageImage: { selector: ".reading-content .wp-manga-chapter-img", multiple: true, attribute: "src" },
       },
