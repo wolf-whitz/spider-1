@@ -38,8 +38,8 @@ const spider = createSpider("yaksha_full")
           .MangaID({ selector: "body", text: true })
           .Name({ selector: ".post-title h1", text: true })
           .Image({ selector: ".summary_image img", attribute: "data-src" })
-          .Description({ selector: ".summary__content p", text: true, multiple: true })
-          .Genres({ selector: ".genres-content a", text: true, multiple: true })
+          .Description({ selector: ".summary__content p", multiple: true, text: true })
+          .Genres({ selector: ".genres-content a", multiple: true, text: true })
           .Chapters({
             selector: ".listing-chapters_wrap .wp-manga-chapter a",
             multiple: true,
