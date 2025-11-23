@@ -14,6 +14,7 @@ export interface SelectorConfig {
   parseScriptJson?: boolean
   jsonPath?: string
   fetch?: boolean
+  fromUrlSlug?: boolean // <-- new flag
 }
 
 export interface ProfileTargetConfig {
