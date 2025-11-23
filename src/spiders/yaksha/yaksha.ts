@@ -1,6 +1,7 @@
 import { createSpider } from "@sdk";
 
 const spider = createSpider("yaksha_full")
+  .name("Yaksha Full Spider")
   .field("manga_id", "string")
   .field("manga_name", "string")
   .field("manga_image", "url")
@@ -22,11 +23,19 @@ const spider = createSpider("yaksha_full")
           with: ""
         },
         fetch: true,
-        ProfileTarget: {}
+        ProfileTarget: {
+          MangaID: {},
+          Name: {},
+          Image: {},
+          Description: {},
+          Genres: {},
+          Chapters: {},
+          PageImage: {}
+        }
       })
       .profileTarget(target =>
         target
-          .MangaID({ selector: null, text: true })
+          .MangaID({ selector: "body", text: true })
           .Name({ selector: ".post-title h1", text: true })
           .Image({ selector: ".summary_image img", attribute: "data-src" })
           .Description({ selector: ".summary__content p", text: true, multiple: true })
