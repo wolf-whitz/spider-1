@@ -1,8 +1,6 @@
 import { createSpider } from "@sdk";
 
 const spider = createSpider("yaksha_full")
-  .name("YakshaScans Manga Search & Chapters")
-  .description("Scrapes YakshaScans search results, manga metadata, chapters, and page images")
   .field("manga_id", "string")
   .field("manga_name", "string")
   .field("manga_image", "url")
@@ -11,22 +9,41 @@ const spider = createSpider("yaksha_full")
   .field("chapters", "object[]")
   .field("page_images", "string[]")
   .targetUrl("https://yakshascans.com/?s={query}&post_type=wp-manga")
-  .itemConfig(item => {
-    item.selector(".c-tabs-item__content a");
-    item.Name({ selector: ".c-tabs-item__content a", text: true });
-    item.profileLink({ selector: ".c-tabs-item__content a", attribute: "href" });
-
-    item.profileTarget(pt => {
-      pt.fetch(true);
-      pt.Url({ selector: "head link[rel='canonical']", attribute: "href" });
-      pt.Name({ selector: ".post-title h1", text: true });
-      pt.Image({ selector: ".summary_image img", attribute: "src" });
-      pt.Description({ selector: ".description-summary", text: true });
-      pt.Genres({ selector: ".post-content_item .genres-content a", multiple: true, text: true });
-      pt.Chapters({ selector: ".listing-chapters_wrap ul.main.version-chap li.wp-manga-chapter a", multiple: true, text: true });
-      pt.PageImage({ selector: ".reading-content .wp-manga-chapter-img", multiple: true, attribute: "src" });
-      pt.MangaID({ selector: ".post-title h1", text: true });
-    });
-  });
-
-spider.save();
+  .itemConfig(item =>
+    item
+      .profileLink({
+        selector: ".tab-summary .post-title a",
+        attribute: "href"
+      })
+      .profileById({
+        urlPattern: "https://yakshascans.com/manga/{manga_id}/",
+        replace: {
+          pattern: "https://yakshascans.com/manga/",
+          with: ""
+        },
+        fetch: true,
+        ProfileTarget: {}
+      })
+      .profileTarget(target =>
+        target
+          .MangaID({ selector: null, text: true })
+          .Name({ selector: ".post-title h1", text: true })
+          .Image({ selector: ".summary_image img", attribute: "data-src" })
+          .Description({ selector: ".summary__content p", text: true, multiple: true })
+          .Genres({ selector: ".genres-content a", text: true, multiple: true })
+          .Chapters({
+            selector: ".listing-chapters_wrap .wp-manga-chapter a",
+            multiple: true,
+            arranger: "newestFirst",
+            fetch: true
+          })
+          .PageImage({
+            selector: "img.wp-manga-chapter-img",
+            attribute: "data-src",
+            multiple: true
+          })
+          .fetch(true)
+      )
+      .fetch(true)
+  )
+  .save();
