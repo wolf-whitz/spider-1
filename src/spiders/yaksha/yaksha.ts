@@ -1,4 +1,4 @@
-import { createSpider } from "@sdk";
+import { createSpider } from "@sdk"
 
 const spider = createSpider("yaksha_full")
   .name("Yaksha Full Spider")
@@ -13,10 +13,14 @@ const spider = createSpider("yaksha_full")
   .itemConfig(item =>
     item
       .selector(".tab-summary")
+
       .profileLink({
         selector: ".post-title a",
-        attribute: "href"
+        attribute: "href",
+        text: false,
+        multiple: false
       })
+
       .profileById({
         urlPattern: "https://yakshascans.com/manga/{manga_id}/",
         replace: {
@@ -28,25 +32,49 @@ const spider = createSpider("yaksha_full")
           MangaID: { selector: "body", text: true },
           Name: { selector: ".post-title h1", text: true },
           Image: { selector: ".summary_image img", attribute: "data-src" },
-          Description: { selector: ".summary__content p", multiple: true, text: true },
-          Genres: { selector: ".genres-content a", multiple: true, text: true },
+          Description: {
+            selector: ".summary__content p",
+            multiple: true,
+            text: true
+          },
+          Genres: {
+            selector: ".genres-content a",
+            multiple: true,
+            text: true
+          },
           Chapters: {
             selector: ".listing-chapters_wrap .wp-manga-chapter a",
             multiple: true,
             arranger: "newestFirst",
             fetch: true
           },
-          PageImage: { selector: "img.wp-manga-chapter-img", attribute: "data-src", multiple: true },
+          PageImage: {
+            selector: "img.wp-manga-chapter-img",
+            attribute: "data-src",
+            multiple: true
+          },
           fetch: true
         }
       })
+
       .profileTarget(target =>
         target
           .MangaID({ selector: "body", text: true })
           .Name({ selector: ".post-title h1", text: true })
-          .Image({ selector: ".summary_image img", attribute: "data-src" })
-          .Description({ selector: ".summary__content p", multiple: true, text: true })
-          .Genres({ selector: ".genres-content a", multiple: true, text: true })
+          .Image({
+            selector: ".summary_image img",
+            attribute: "data-src"
+          })
+          .Description({
+            selector: ".summary__content p",
+            text: true,
+            multiple: true
+          })
+          .Genres({
+            selector: ".genres-content a",
+            multiple: true,
+            text: true
+          })
           .Chapters({
             selector: ".listing-chapters_wrap .wp-manga-chapter a",
             multiple: true,
@@ -60,6 +88,7 @@ const spider = createSpider("yaksha_full")
           })
           .fetch(true)
       )
+
       .fetch(true)
   )
-  .save();
+  .save()
