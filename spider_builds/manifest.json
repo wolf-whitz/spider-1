@@ -14,6 +14,11 @@
       "id": "tapas_full",
       "name": "Tapas Full Search & Episodes",
       "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/tapas_full.msgpack"
+    },
+    {
+      "id": "yaksha_full",
+      "name": "YakshaScans Manga Search & Chapters",
+      "link": "https://github.com/wolf-whitz/spider-1/raw/main/spider_builds/yaksha_full.msgpack"
     }
   ]
 }
