@@ -1,4 +1,4 @@
-import { createSpider } from "@sdk"
+import { createSpider } from "@sdk";
 
 const spider = createSpider("tapas_full")
   .name("Tapas Full Search & Episodes")
@@ -12,21 +12,27 @@ const spider = createSpider("tapas_full")
   .field("page_image", "url")
   .targetUrl("https://tapas.io/search?q={query}")
   .itemConfig(item => {
-    item.selector("div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap")
+    item.selector("div.body div.global-page section.page-section ul.content-list-wrap li.search-item-wrap");
 
-    item.Name({ selector: "p.title a strong", text: true })
-    item.Genres({ selector: "p.tag a", multiple: true, text: true })
-    item.HighlightText({ selector: "p.desc", text: true })
-    item.profileLink({ selector: "p.title a", attribute: "href" })
+    item.Name({ selector: "p.title a strong", text: true });
+    item.Genres({ selector: "p.tag a", multiple: true, text: true });
+    item.HighlightText({ selector: "p.desc", text: true });
+    item.profileLink({ selector: "p.title a", attribute: "href" });
 
     item.profileTarget(pt => {
-      pt.Url({ selector: "p.title a", attribute: "href" })
-      pt.Image({ selector: "div.item-thumb-wrap img", attribute: "src" })
-      pt.Name({ selector: "p.title a strong", text: true })
-      pt.Genres({ selector: "p.tag a", multiple: true, text: true })
-      pt.MangaID({ selector: "p.title a", attribute: "href" })
-      pt.Chapters({ selector: "script", parseScriptJson: true, jsonPath: "$.data.episodes[*]", multiple: true, fetch: false }) 
-    })
+      pt.Url({ selector: "p.title a", attribute: "href" });
+      pt.Image({ selector: "div.item-thumb-wrap img", attribute: "src" });
+      pt.Name({ selector: "p.title a strong", text: true });
+      pt.Genres({ selector: "p.tag a", multiple: true, text: true });
+      pt.MangaID({ selector: "p.title a", attribute: "href" });
+      pt.Chapters({ 
+        selector: "script",
+        parseScriptJson: true,
+        jsonPath: "$.data.episodes[*]",
+        multiple: true,
+        fetch: false
+      });
+    });
 
     item.profileById({
       urlPattern: "https://tapas.io/series/{manga_id}/info",
@@ -53,7 +59,7 @@ const spider = createSpider("tapas_full")
           fetch: true
         }
       }
-    })
-  })
+    });
+  });
 
-spider.save()
+spider.save();
